@@ -14,10 +14,11 @@ def create_filtered_list():
         filtered_names = list(filter(None, re.split(r'\s', ' '.join(data[0:3]))))
         if data[5]:
             filtered_names.append(data[5])
-        if filtered_names in filtered_list or len(filtered_names) < 4:
-            continue
-        else:
             filtered_list.append(filtered_names)
+        for names in filtered_list:
+            if filtered_names[:2] in names[:2]:
+                filtered_list.remove(names)
+
     return filtered_list
 
 
